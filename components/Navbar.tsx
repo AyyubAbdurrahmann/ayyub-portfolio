@@ -4,15 +4,14 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Menu, X } from "lucide-react";
+import ClientOnly from "./ClientOnly";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -30,8 +29,6 @@ export default function Navbar() {
     { href: "#contact", label: "Contact" },
   ];
 
-  if (!mounted) return null;
-
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -46,7 +43,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="font-bold text-xl gradient-text"
+            className="font-bold text-xl bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent"
           >
             Ayyub.dev
           </motion.div>
@@ -64,31 +61,46 @@ export default function Navbar() {
               </motion.a>
             ))}
 
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+            <ClientOnly
+              fallback={
+                <div className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 w-10 h-10"></div>
+              }
             >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              </motion.button>
+            </ClientOnly>
           </div>
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-4">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
+            <ClientOnly
+              fallback={
+                <div className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 w-10 h-10"></div>
+              }
             >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              </motion.button>
+            </ClientOnly>
 
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
+              aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </motion.button>
