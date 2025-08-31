@@ -1,26 +1,13 @@
+// components/HeroSection.tsx (Alternative with CSS Animation)
 "use client";
 
 import { motion } from "framer-motion";
 import { Download, Eye } from "lucide-react";
-import dynamic from "next/dynamic";
-
-const Spline = dynamic(
-  async () => {
-    // Ensure the import path is exactly this:
-    const mod = await import("@splinetool/react-spline/next");
-    return mod.default || mod;
-  },
-  { 
-    ssr: false, // Spline is a client-side only component
-    loading: () => (
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
-      </div>
-    ),
-  }
-);
+import { useState, useEffect } from "react";
 
 export default function HeroSection() {
+  const [splineLoaded, setSplineLoaded] = useState(false);
+
   const handleDownloadCV = () => {
     const link = document.createElement("a");
     link.href = "/cv-ayyub.pdf";
@@ -32,13 +19,118 @@ export default function HeroSection() {
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Fallback 3D-like animation using pure CSS
+  const FallbackAnimation = () => (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Animated geometric shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-20 h-20 bg-blue-500/30 rounded-lg rotate-45 animate-float"></div>
+        <div
+          className="absolute top-1/2 right-1/3 w-16 h-16 bg-purple-500/30 rounded-full animate-float"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/3 left-1/2 w-12 h-12 bg-pink-500/30 rotate-12 animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-3/4 right-1/4 w-8 h-8 bg-yellow-500/30 rounded-full animate-float"
+          style={{ animationDelay: "3s" }}
+        ></div>
+      </div>
+
+      {/* Central design element */}
+      <div className="relative z-10">
+        <motion.div
+          animate={{
+            rotate: 360,
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+          }}
+          className="w-48 h-48 rounded-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 opacity-20 blur-sm"
+        />
+
+        <motion.div
+          animate={{
+            rotate: -360,
+            scale: [1.2, 1, 1.2],
+          }}
+          transition={{
+            rotate: { duration: 15, repeat: Infinity, ease: "linear" },
+            scale: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+          }}
+          className="absolute inset-4 rounded-full bg-gradient-to-l from-cyan-400 via-blue-500 to-indigo-600 opacity-30 blur-md"
+        />
+
+        {/* UI/UX Icon in center */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            animate={{
+              y: [-10, 10, -10],
+              rotate: [0, 5, -5, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="text-6xl"
+          >
+            🎨
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Spline Component with error handling
+  const SplineScene = () => {
+    const [Spline, setSpline] = useState<any>(null);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+      const loadSpline = async () => {
+        try {
+          const SplineComponent = await import("@splinetool/react-spline");
+          setSpline(() => SplineComponent.default);
+          setSplineLoaded(true);
+        } catch (err) {
+          console.log("Spline failed to load, using fallback animation");
+          setError(true);
+        }
+      };
+      loadSpline();
+    }, []);
+
+    if (error || !Spline) {
+      return <FallbackAnimation />;
+    }
+
+    return (
+      <Spline
+        scene="https://prod.spline.design/F5WhLvzJ3-r2bBJ3/scene.splinecode"
+        onLoad={() => setSplineLoaded(true)}
+        onError={() => setError(true)}
+      />
+    );
+  };
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Animated Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-300 dark:bg-blue-600 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-xl opacity-70 animate-float"></div>
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-300 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-xl opacity-70 animate-float animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-pink-300 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-xl opacity-70 animate-float animation-delay-4000"></div>
+        <div
+          className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-300 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-xl opacity-70 animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-pink-300 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-xl opacity-70 animate-float"
+          style={{ animationDelay: "4s" }}
+        ></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -125,7 +217,7 @@ export default function HeroSection() {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-600/20 dark:from-blue-600/30 dark:to-purple-800/30 rounded-3xl"></div>
             <div className="w-full h-full rounded-3xl overflow-hidden shadow-2xl">
-              <Spline scene="https://prod.spline.design/F5WhLvzJ3-r2bBJ3/scene.splinecode" />
+              <SplineScene />
             </div>
           </motion.div>
         </div>
