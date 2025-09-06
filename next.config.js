@@ -7,5 +7,14 @@ const nextConfig = {
       { protocol: "https", hostname: "cdn.domainmu.com" },
     ],
   },
+  webpack(config) {
+    // Konfigurasi untuk handle SVG
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+    return config;
+  },
 };
+
 module.exports = nextConfig;
