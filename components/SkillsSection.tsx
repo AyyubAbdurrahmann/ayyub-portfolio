@@ -41,7 +41,7 @@ export default function SkillsSection() {
                 .replace(/\+\+/g, "pp"); // opsional untuk C++
               
               // default pakai .svg
-              const logoPath = `/skills/${logoName}.svg`;
+              const logoPath = `${logoName}.svg`;
 
               return (
                 <motion.div
