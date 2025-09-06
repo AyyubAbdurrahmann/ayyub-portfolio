@@ -86,8 +86,8 @@ export default function ContactSection() {
     {
       icon: <Instagram className="w-6 h-6" />,
       label: "Instagram",
-      value: "@ayyub.dev",
-      link: "https://instagram.com/ayyub.dev",
+      value: "@aybabdrhmn",
+      link: "https://instagram.com/aybabdrhmn",
     },
     {
       icon: <MapPin className="w-6 h-6" />,

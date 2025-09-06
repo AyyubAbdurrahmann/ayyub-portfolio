@@ -11,13 +11,29 @@ export default function CertificationSection() {
       date: "2025",
       description:
         "Comprehensive training covering design thinking, user research, wireframing, prototyping, and usability testing.",
-      image: "/certifications/myskill-uiux.jpg",
+      image: "/certifications/Serti1.png",
+      pdf: "/certifications/Serti1.pdf", // tambahkan path ke file PDF
       skills: [
         "Design Thinking",
         "User Research",
         "Wireframing",
         "Prototyping",
         "Usability Testing",
+      ],
+    },
+    {
+      title: "Laboratory Assistant",
+      provider: "Ahmad Dahlan University",
+      date: "2025",
+      description:
+        "Responsible for assisting lecturers in conducting practicums, guiding students, and assessing practicum assignments.",
+      image: "/certifications/Serti2.png",
+      pdf: "/certifications/Serti2.pdf",
+      skills: [
+        "Teamwork",
+        "Teaching Assistance",
+        "Assessment",
+        "Communication",
       ],
     },
   ];
@@ -53,10 +69,19 @@ export default function CertificationSection() {
             >
               <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex flex-col md:flex-row items-center gap-8">
-                  {/* Certification Image / Icon */}
-                  <div className="w-40 h-28 bg-gradient-to-br from-blue-100 to-green-100 dark:from-blue-900/30 dark:to-green-900/30 rounded-xl flex items-center justify-center">
-                    <Award className="w-12 h-12 text-blue-600 dark:text-blue-400" />
-                  </div>
+                  {/* Certification Image */}
+                  <a
+                    href={cert.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-40 h-28 rounded-xl flex items-center justify-center overflow-hidden"
+                  >
+                    <img
+                      src={cert.image}
+                      alt={cert.title}
+                      className="object-contain w-full h-full"
+                    />
+                  </a>
 
                   {/* Certification Details */}
                   <div className="flex-1 text-center md:text-left">

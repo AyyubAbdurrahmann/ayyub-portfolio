@@ -11,7 +11,7 @@ export default function ExperienceSection() {
       period: "March 2025 - July 2025",
       location: "Yogyakarta, Indonesia",
       responsibilities: [
-        "Led UI design oversight during lab sessions, ensuring consistency and accessibility",
+        "Lead UI design oversight during lab sessions, ensuring consistency and accessibility",
         "Assisted in User Experience Research and Design course practical sessions",
         "Mentored students in Figma for wireframing and prototyping",
       ],

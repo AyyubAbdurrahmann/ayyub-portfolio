@@ -10,8 +10,8 @@ export default function ProjectSection() {
       title: "LaporPak",
       description:
         "Web-based platform for public reporting and data verification to enhance transparency for local government institutions.",
-      image: "/projects/laporpak.jpg", // Add your project images to public/projects/
-      tech: ["Vue.js", "Bootstrap", "Figma", "UI/UX Design"],
+      image: "/projects/laporpak.png", // Add your project images to public/projects/
+      tech: ["Vue.js", "Bootstrap", "Figma"],
       period: "March 2025 - June 2025",
       type: "Capstone Project",
       features: [
@@ -20,12 +20,15 @@ export default function ProjectSection() {
         "Government Portal",
         "User-Friendly Interface",
       ],
+      link: "https://laporpak.com",
+      design:
+        "https://www.figma.com/proto/1449OM2qHyvM6OVLazGB3x/Lapor-Pak?node-id=1335-1911&t=h2goNxNre7h9R8X4-1&scaling=contain&content-scaling=fixed&page-id=1120%3A825&starting-point-node-id=1335%3A1911", // tambahkan link figma design di sini
     },
     {
       title: "VestiPoint",
       description:
         "Digital solution designed to raise awareness about fashion waste through comprehensive UX research and design thinking.",
-      image: "/projects/vestipoint.jpg",
+      image: "/projects/vestipoint.png",
       tech: ["Figma", "User Research", "Design Thinking", "Prototyping"],
       period: "March 2024 - July 2024",
       type: "Team Project",
@@ -35,12 +38,13 @@ export default function ProjectSection() {
         "Journey Maps",
         "Fashion Sustainability",
       ],
+      link: "https://www.figma.com/proto/zo8GzPUFJNUAudmduSSnV4/Vestipoint?node-id=66-1490&p=f&t=urHDBQ0gAFiJxbn7-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=66%3A1305&show-proto-sidebar=1",
     },
     {
       title: "Twomorrow Website Redesign",
       description:
         "Redesigned official website transforming from e-commerce to exclusive consultation experience for luxury jewelry.",
-      image: "/projects/twomorrow.jpg",
+      image: "/projects/twomorrow.png",
       tech: ["Figma", "Brand Guidelines", "Visual Hierarchy", "Luxury Design"],
       period: "August 2025",
       type: "Competition Project",
@@ -50,6 +54,23 @@ export default function ProjectSection() {
         "Consultation Focus",
         "Visual Storytelling",
       ],
+      link: "https://www.figma.com/proto/ufEaUQfG5aQQQKKnNvOTLA/twomorrowjewellery?node-id=551-3040&p=f&t=FZb8SbMjBx0j2DkQ-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=551%3A3040",
+    },
+    {
+      title: "Kana (Ongoing Project)",
+      description:
+        "A web application that enables teachers to generate quizzes automatically from files using AI. Teachers upload learning materials, and the system creates quizzes for students to complete online. I am responsible for designing the UI/UX to ensure an intuitive experience for both teachers and students.",
+      image: "/projects/kana.png", // add image to public/projects/ if available
+      period: "Agt 2025 - Present",
+      type: "Team Project",
+      features: [
+        "AI-powered Quiz Generation",
+        "PDF Material Upload",
+        "Student Quiz Portal",
+        "Modern UI/UX Design",
+      ],
+      link: "", // Leave empty if not live yet
+      design: "", // Leave empty if not available yet
     },
   ];
 
@@ -83,13 +104,25 @@ export default function ProjectSection() {
               <div className="rounded-xl overflow-hidden bg-white dark:bg-gray-800 shadow-lg">
                 {/* Project Image */}
                 <div className="relative h-48 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-6xl font-bold text-blue-600/20 dark:text-blue-400/20">
-                      {project.title.substring(0, 2).toUpperCase()}
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      className="transition-transform duration-300 group-hover:scale-105 z-0"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      priority={index === 0}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center z-0">
+                      <div className="text-6xl font-bold text-blue-600/20 dark:text-blue-400/20">
+                        {project.title.substring(0, 2).toUpperCase()}
+                      </div>
                     </div>
-                  </div>
+                  )}
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                  <div className="absolute inset-0 z-10 pointer-events-none transition-all duration-300 bg-black/0 group-hover:bg-black/10"></div>
                 </div>
 
                 {/* Project Content */}
@@ -128,28 +161,48 @@ export default function ProjectSection() {
                     </div>
                   </div>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+              
 
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
-                    >
-                      <ExternalLink size={16} />
-                      View Details
-                    </motion.button>
+                    {/* Tombol ke Figma Design jika ada */}
+                    {"design" in project && project.design && (
+                      <motion.a
+                        href={project.design}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white rounded-lg text-sm font-medium hover:bg-gray-900 dark:hover:bg-gray-600 transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                        Figma Design
+                      </motion.a>
+                    )}
+                    {/* Tombol ke Website */}
+                    {project.link ? (
+                      <motion.a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                        View Website
+                      </motion.a>
+                    ) : (
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-4 py-2 bg-gray-400 text-white rounded-lg text-sm font-medium cursor-not-allowed"
+                        disabled
+                      >
+                        <ExternalLink size={16} />
+                        View Website
+                      </motion.button>
+                    )}
                   </div>
                 </div>
               </div>

@@ -45,7 +45,7 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             className="font-bold text-xl bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent"
           >
-            Ayyub.dev
+            Ayyub
           </motion.div>
 
           {/* Desktop Navigation */}

@@ -5,7 +5,7 @@ import { Providers } from "@/components/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Ayyub Abdurrahman - UI/UX Designer & Frontend Developer",
+  title: "Ayyub Abdurrahman - UI/UX Designer",
   description:
     "Portfolio of Ayyub Abdurrahman, Information Systems Student specializing in UI/UX Design",
 };

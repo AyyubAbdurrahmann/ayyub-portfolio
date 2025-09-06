@@ -44,7 +44,7 @@ export default function AboutSection() {
             About Me
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            I'm a sixth-semester Information Systems student at Universitas
+            I'm a seventh-semester Information Systems student at Universitas
             Ahmad Dahlan with a passion for creating meaningful digital
             experiences. My journey in UI/UX design has been driven by curiosity
             about how people interact with technology and how design can solve

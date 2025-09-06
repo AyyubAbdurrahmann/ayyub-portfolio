@@ -10,8 +10,8 @@ export default function HeroSection() {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/cv-ayyub.pdf";
-    link.download = "CV-Ayyub-Abdurrahman.pdf";
+    link.href = "/CV - Ayyub.pdf";
+    link.download = "CV - Ayyub.pdf";
     link.click();
   };
 
@@ -166,7 +166,7 @@ export default function HeroSection() {
                 Information Systems Student
               </p>
               <p className="text-lg md:text-xl text-blue-600 dark:text-blue-400 font-semibold">
-                UI/UX Designer & Frontend Developer
+                UI/UX Designer 
               </p>
             </motion.div>
 
@@ -176,8 +176,8 @@ export default function HeroSection() {
               transition={{ delay: 0.6 }}
               className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0"
             >
-              Passionate about creating intuitive digital experiences through
-              user-centered design and modern web technologies.
+              Dedicated to building impactful digital products through user
+              research, design thinking, and modern design tools
             </motion.p>
 
             <motion.div
