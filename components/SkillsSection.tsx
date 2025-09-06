@@ -41,7 +41,18 @@ export default function SkillsSection() {
                 .replace(/\+\+/g, "pp"); // opsional untuk C++
               
               // default pakai .svg
-              const logoPath = `/icons/${logoName}.svg`;
+              const logoPath =
+                skill.name === "Figma"
+                  ? "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
+                  : skill.name === "HTML"
+                  ? "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                  : skill.name === "CSS"
+                  ? "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                  : skill.name === "JavaScript"
+                  ? "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                  : skill.name === "Vue.js"
+                  ? "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
+                  : "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg";
 
               return (
                 <motion.div
