@@ -34,12 +34,15 @@ export default function SkillsSection() {
         <div className="flex justify-center w-full">
           <div className="grid grid-cols-6 gap-6 justify-items-center w-max">
             {skills.map((skill, idx) => {
-              // Generate logo path: lowercase, spasi/./+ diganti dengan strip, ekstensi svg
+              // generate nama file: lowercase, spasi/./+ jadi strip
               const logoName = skill.name
                 .toLowerCase()
                 .replace(/\s|\./g, "-")
-                .replace(/\+\+/g, "pp"); // opsional: handle C++ jika ada
+                .replace(/\+\+/g, "pp"); // opsional untuk C++
+              
+              // default pakai .svg
               const logoPath = `/skills/${logoName}.svg`;
+
               return (
                 <motion.div
                   key={skill.name}
@@ -53,13 +56,24 @@ export default function SkillsSection() {
                   className="flex flex-col items-center p-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition"
                 >
                   <div className="mb-2 w-10 h-10 flex items-center justify-center">
-                    <Image
-                      src={logoPath}
-                      alt={skill.name}
-                      width={skill.name === "Figma" ? 32 : 40}
-                      height={skill.name === "Figma" ? 32 : 40}
-                      className="object-contain"
-                    />
+                    {/* Gunakan <img> kalau SVG */}
+                    {logoPath.endsWith(".svg") ? (
+                      <img
+                        src={logoPath}
+                        alt={skill.name}
+                        width={skill.name === "Figma" ? 32 : 40}
+                        height={skill.name === "Figma" ? 32 : 40}
+                        className="object-contain"
+                      />
+                    ) : (
+                      <Image
+                        src={logoPath}
+                        alt={skill.name}
+                        width={skill.name === "Figma" ? 32 : 40}
+                        height={skill.name === "Figma" ? 32 : 40}
+                        className="object-contain"
+                      />
+                    )}
                   </div>
                   <div className="text-xs font-semibold text-gray-800 dark:text-gray-200 text-center">
                     {skill.name}
