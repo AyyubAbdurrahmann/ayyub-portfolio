@@ -11,8 +11,8 @@ export default function CertificationSection() {
       date: "2025",
       description:
         "Comprehensive training covering design thinking, user research, wireframing, prototyping, and usability testing.",
-      image: "/certifications/Serti1.png",
-      pdf: "/certifications/Serti1.pdf", // tambahkan path ke file PDF
+      image: "/projects/Serti1.png",
+      pdf: "/projects/Serti1.pdf", // tambahkan path ke file PDF
       skills: [
         "Design Thinking",
         "User Research",
@@ -27,8 +27,8 @@ export default function CertificationSection() {
       date: "2025",
       description:
         "Responsible for assisting lecturers in conducting practicums, guiding students, and assessing practicum assignments.",
-      image: "/certifications/Serti2.png",
-      pdf: "/certifications/Serti2.pdf",
+      image: "/projects/Serti2.png",
+      pdf: "/projects/Serti2.pdf",
       skills: [
         "Teamwork",
         "Teaching Assistance",

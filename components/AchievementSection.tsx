@@ -14,7 +14,7 @@ export default function AchievementSection() {
       institution: "Universitas Ahmad Dahlan",
       date: "July 2025",
       icon: <Trophy className="w-8 h-8" />,
-      image: "/achievements/bestproduct.jpg",
+      image: "/projects/bestproduct.jpg",
     },
   ];
 
