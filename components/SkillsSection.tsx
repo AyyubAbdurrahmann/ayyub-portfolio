@@ -11,6 +11,7 @@ export default function SkillsSection() {
     { name: "JavaScript", description: "Interactive Web Development" },
     { name: "Vue.js", description: "Progressive Framework" },
     { name: "Bootstrap", description: "CSS Framework" },
+    { name: "Maze", description: "Maze Testing Platform" }, // Tambahkan Maze
   ];
 
   return (
@@ -52,7 +53,9 @@ export default function SkillsSection() {
                   ? "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
                   : skill.name === "Vue.js"
                   ? "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
-                  : "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg";
+                  : skill.name === "Maze"
+                  ? "/projects/maze-icon.png" // gunakan path lokal, pastikan file ada di public/
+                  : "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg";  
 
               return (
                 <motion.div

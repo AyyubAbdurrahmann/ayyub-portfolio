@@ -69,7 +69,7 @@ export default function ProjectSection() {
         "Student Quiz Portal",
         "Modern UI/UX Design",
       ],
-      link: "", // Leave empty if not live yet
+      link: "https://about-kana.vercel.app/", // Leave empty if not live yet
       design: "", // Leave empty if not available yet
     },
   ];
@@ -161,8 +161,6 @@ export default function ProjectSection() {
                     </div>
                   </div>
 
-              
-
                   {/* Action Buttons */}
                   <div className="flex gap-3">
                     {/* Tombol ke Figma Design jika ada */}
@@ -179,7 +177,21 @@ export default function ProjectSection() {
                         Figma Design
                       </motion.a>
                     )}
-                    {/* Tombol ke Website */}
+                    {/* Tombol Research khusus untuk VestiPoint */}
+                    {project.title === "VestiPoint" && (
+                      <motion.a
+                        href="https://www.figma.com/board/3aBCmy5aJK6FBHIBVOaSho/RDP?node-id=0-1&t=JQftFtt9ThyrncP3-1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-4 py-2 bg-green-600 dark:bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-700 dark:hover:bg-green-600 transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                        Research
+                      </motion.a>
+                    )}
+                    {/* Tombol ke Website / Prototype */}
                     {project.link ? (
                       <motion.a
                         href={project.link}
@@ -190,7 +202,10 @@ export default function ProjectSection() {
                         className="flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
                       >
                         <ExternalLink size={16} />
-                        View Website
+                        {project.title === "VestiPoint" ||
+                        project.title === "Twomorrow Website Redesign"
+                          ? "View Prototype"
+                          : "View Website"}
                       </motion.a>
                     ) : (
                       <motion.button
@@ -200,7 +215,10 @@ export default function ProjectSection() {
                         disabled
                       >
                         <ExternalLink size={16} />
-                        View Website
+                        {project.title === "VestiPoint" ||
+                        project.title === "Twomorrow Website Redesign"
+                          ? "View Prototype"
+                          : "View Website"}
                       </motion.button>
                     )}
                   </div>
