@@ -6,6 +6,16 @@ import { Calendar, MapPin } from "lucide-react";
 export default function ExperienceSection() {
   const experiences = [
     {
+      title: "Internship - Biro Sistem Informasi (BSI)",
+      company: "Universitas Ahmad Dahlan",
+      period: "September 2025 - February 2025",
+      location: "Yogyakarta, Indonesia",
+      responsibilities: [
+        "Redesigned the PMB Online UAD website using User-Centered Design (UCD) principles",
+        "Created an executive dashboard for new student data",
+      ],
+    },
+    {
       title: "Laboratory Assistant - Information System",
       company: "Universitas Ahmad Dahlan",
       period: "March 2025 - July 2025",

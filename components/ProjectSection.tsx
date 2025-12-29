@@ -72,6 +72,7 @@ export default function ProjectSection() {
       link: "https://about-kana.vercel.app/", // Leave empty if not live yet
       design: "", // Leave empty if not available yet
     },
+    
   ];
 
   return (
