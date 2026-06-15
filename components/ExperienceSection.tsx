@@ -8,7 +8,7 @@ export default function ExperienceSection() {
     {
       title: "Internship - Biro Sistem Informasi (BSI)",
       company: "Universitas Ahmad Dahlan",
-      period: "September 2025 - February 2025",
+      period: "September 2025 - February 2026",
       location: "Yogyakarta, Indonesia",
       responsibilities: [
         "Redesigned the PMB Online UAD website using User-Centered Design (UCD) principles",
